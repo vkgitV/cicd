@@ -23,8 +23,8 @@ jobs:
       - name: Build APK
         run: flutter build apk --debug --build-name=1.0.0 --build-number=1
 
-      - name: Build iOS (optional, requires macOS runner)
-        run: flutter build ios --debug --build-name=1.0.0 --build-number=1 --no-codesign
+#      - name: Build iOS (optional, requires macOS runner)
+#        run: flutter build ios --debug --build-name=1.0.0 --build-number=1 --no-codesign
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
