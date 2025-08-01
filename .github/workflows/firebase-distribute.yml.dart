@@ -1,3 +1,9 @@
+name: Firebase CI/CD
+on:
+push:
+branches: [main]  # or your branch name (e.g., dev)
+
+
 jobs:
 build:
 runs-on: ubuntu-latest
