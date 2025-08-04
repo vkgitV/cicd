@@ -25,10 +25,20 @@ jobs:
       - name: Run tests
         run: flutter test
 
-      - name: Build APK
-        run: flutter build apk --debug --build-name=1.0.0 --build-number=1
+      - name: Extract version from tag
+        id: version
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          echo "TAG_NAME=$TAG_NAME"
+          echo "build_name=${TAG_NAME#v}" >> $GITHUB_OUTPUT
+          echo "build_number=${TAG_NAME#v}" | grep -oE '[0-9]+$' >> build_number.txt
+          echo "build_number=$(cat build_number.txt)" >> $GITHUB_OUTPUT
 
-#      - name: Build iOS (optional, requires macOS runner)
+      - name: Build APK
+        run: flutter build apk --debug --build-name=${{ steps.version.outputs.build_name }} --build-number=${{ steps.version.outputs.build_number }}
+
+
+      #      - name: Build iOS (optional, requires macOS runner)
 #        run: flutter build ios --debug --build-name=1.0.0 --build-number=1 --no-codesign
 
       - name: Upload APK as artifact
