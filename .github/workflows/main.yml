@@ -55,4 +55,4 @@ jobs:
           groups: android
           file: build/app/outputs/flutter-apk/app-debug.apk
           notifyTesters: true
-          releaseNotes: "kaviyaaaaaaaaa download this app"
+          releaseNotesFile: release.txt
